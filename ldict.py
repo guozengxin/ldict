@@ -78,6 +78,8 @@ def myinput(flag='> '):
             if str(newChar) in '\r\n':
                 print ''
                 break
+            if str(newChar) in '\t':
+                continue
             elif newChar == '\b':
                 if chars:
                     del chars[-1]
@@ -99,15 +101,18 @@ def myinput(flag='> '):
                     sys.stdout.write(historyList[nowIndex - 1])
                     nowIndex -= 1
             elif newChar == '\x1b[B':
-                if nowIndex < len(historyList):
+                if nowIndex < hislen:
                     removeShow(historyList[nowIndex])
-                    if nowIndex < len(historyList) - 1:
+                    if nowIndex < hislen:
                         sys.stdout.write(historyList[nowIndex + 1])
-                    elif nowIndex == len(historyList) - 1:
+                    elif nowIndex == hislen - 1:
                         sys.stdout.write(''.join(chars))
                     nowIndex += 1
 
-    return ''.join(chars)
+    if nowIndex < hislen:
+        return historyList[nowIndex]
+    else:
+        return ''.join(chars)
 
 
 def parseOpt(args):
