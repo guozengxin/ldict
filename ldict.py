@@ -17,14 +17,14 @@ historyList = []
 
 class _Getch:
     def __call__(self, length=1):
-            fd = sys.stdin.fileno()
-            old_settings = termios.tcgetattr(fd)
-            try:
-                tty.setraw(sys.stdin.fileno())
-                ch = sys.stdin.read(length)
-            finally:
-                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-            return ch
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(length)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
 
 
 getch = _Getch()
@@ -58,7 +58,7 @@ def writeHistory():
 
 
 def usage():
-    print '''iciba.py [-d(--daemon)|-h(--help)|word]'''
+    print '''iciba.py'''
 
 
 def removeShow(chars):
