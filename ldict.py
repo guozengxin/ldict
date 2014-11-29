@@ -86,8 +86,6 @@ def myinput(flag='> '):
                     sys.stdout.write('\b \b')
             elif str(newChar) in '\03\04':
                 sys.exit(-1)
-            elif ord(str(newChar)) == 72:
-                pass
             else:
                 sys.stdout.write(newChar)
                 chars.append(newChar)

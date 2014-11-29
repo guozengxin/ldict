@@ -50,13 +50,8 @@ backValues = {
 
 def baseColorPrint(message, attr=0, fore=37, back=40):
     colorStr = '\x1b[%d;%d;%dm' % (attr, fore, back)
-    print '%s%s' % (colorStr, message),
-    colorClear()
+    print '%s%s\x1b[0m' % (colorStr, message),
 
 
 def colorPrint(message, fore='white', back='black', attr=1):
     baseColorPrint(message, attr=1, fore=textValues[fore], back=backValues[back])
-
-
-def colorClear():
-    print '\x1b[0m',
